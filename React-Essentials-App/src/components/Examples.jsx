@@ -11,25 +11,25 @@ export default function Examples() {
         <Section id="examples" title="Examples">
             <menu>
             <TabButton
-                onSelect={() => setSelectedTopic("components")}
+                onClick={() => setSelectedTopic("components")}
                 isSelected={selectedTopic === "components"}
             >
                 Components
             </TabButton>
             <TabButton
-                onSelect={() => setSelectedTopic("jsx")}
+                onClick={() => setSelectedTopic("jsx")}
                 isSelected={selectedTopic === "jsx"}
             >
                 JSX
             </TabButton>
             <TabButton
-                onSelect={() => setSelectedTopic("props")}
+                onClick={() => setSelectedTopic("props")}
                 isSelected={selectedTopic === "props"}
             >
                 Props
             </TabButton>
             <TabButton
-                onSelect={() => setSelectedTopic("state")}
+                onClick={() => setSelectedTopic("state")}
                 isSelected={selectedTopic === "state"}
             >
                 State
