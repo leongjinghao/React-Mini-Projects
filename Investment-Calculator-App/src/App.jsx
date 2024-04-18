@@ -21,8 +21,12 @@ function App() {
   return (
     <>
       <Header />
-      <UserInput userInput={userInput} onInputChange={handleInputChange}/>
-      <Results userInput={userInput} />
+      <UserInput userInput={userInput} onInputChange={handleInputChange} />
+      {userInput.duration > 0 ? (
+        <Results userInput={userInput} />
+      ) : (
+        <p className="center">Please enter a duration greater than zero.</p>
+      )}
     </>
   );
 }
