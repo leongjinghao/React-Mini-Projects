@@ -18,3 +18,15 @@ Learning concepts:
 - Forwarding **_props_** to wrapped element
 - Utilising **_props.children_** to retrieve nested UI elements
 - Utilising **_props.something_** to store chunks of html code (UI elements), similar to the capability of **_props.children_**
+
+## Tic Tac Toe App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/fbbbed05-42e3-490f-98d2-ee10084776bf">
+</p>
+
+Learning concepts:
+- Elevating object state to the parent component when multiple sibling components require information on the object state
+- Deriving an object from another object state (**_gameTurns_** state -> **_gameBoard_** object)
+- Resetting object state to achieve a clean slate
+- Observing a bug resulting from object initialisation with another object reference, use a deep copied object instead
