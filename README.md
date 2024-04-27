@@ -59,3 +59,10 @@ Learning concepts:
   - Tailwind CSS
 - Static, dynamic and conditional styling
 - Pros and cons of different styling options
+
+## Debugging React App
+
+Learning concepts:
+- Utilising debugger on browser, i.e. breakpoints, etc. (debugging frontend behavior)
+- React **_Strict Mode_**, wrapping **_Strict Mode_** to a component, useful for highlighting potential problems
+- React development tool extension on browser
