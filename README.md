@@ -66,3 +66,17 @@ Learning concepts:
 - Utilising debugger on browser, i.e. breakpoints, etc. (debugging frontend behavior)
 - React **_Strict Mode_**, wrapping **_Strict Mode_** to a component, useful for highlighting potential problems
 - React development tool extension on browser
+
+## The Almost Final Countdown App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/1b22b738-cd21-4501-9800-50b795b9d927">
+</p>
+
+Learning concepts:
+- Utilising React's **_useRef_** access and manipulate DOM directly
+- Ref can be used to declare a wide range of things, i.e. DOM element, object, function, etc.
+- Objects defined with React's **_useRef_** remain persistent even on component rerender
+- Exposing ref to child element using **_forwardRef_**
+- Different timer implementation with **_setTimeout_** and **_setInterval_**
+- Rendering component in a remote location through **_createPortal_**, not at direct parent/child component
