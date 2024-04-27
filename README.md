@@ -43,3 +43,19 @@ Learning concepts:
 - Defining a single object state to manage multiple attributes (multiple input fields bundle within a single **_userInput_** state)
 - Utilising **_array.map_** function to dynamically define multiple component instances, and spread **_props_** on each component instance
 - Conditionally renders UI elements
+
+## React Art App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/9f9e65cd-0d41-455f-8199-12c38beb2dbc">
+</p>
+
+Learning concepts:
+- Styling options:
+  - Vanilla CSS (CSS classes)
+  - Inline style
+  - CSS module (tied to build process, CSS file would be named **_{component}.module.css_**)
+  - Styled Component package
+  - Tailwind CSS
+- Static, dynamic and conditional styling
+- Pros and cons of different styling options
