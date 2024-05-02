@@ -8,6 +8,7 @@ function App() {
     selectedProjectId: undefined, // undefined represents initial state w/ no project (selected)
     projects: [],
   });
+  let content;
 
   function handleStartAddProject() {
     setProjectsState((prevProjectsState) => {
@@ -29,26 +30,34 @@ function App() {
 
   function handleAddProject(userInputs) {
     setProjectsState((prevProjectsState) => {
+      const projectId = Math.random(); // not best practice for generating ids, but this is sufficient for this project
       const newProject = {
         ...userInputs,
-        id: Math.random(), // not best practice for generating ids, but this is sufficient for this project
+        id: projectId,
       };
 
       return {
-        ...prevProjectsState,
+        selectedProjectId: projectId,
         projects: [...prevProjectsState.projects, newProject],
       };
     });
   }
 
+  if (projectsState.selectedProjectId === undefined) {
+    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+  } else if (projectsState.selectedProjectId === null) {
+    content = <NewProject onAddProject={handleAddProject} onCancelAddProject={handleCancelAddProject} />;
+  } else {
+    // TODO: display project data if a project is selected
+  }
+
   return (
     <main className="h-screen my-8 flex gap-8">
-      <ProjectsSidebar onStartAddProject={handleStartAddProject} />
-      {projectsState.selectedProjectId === undefined ? (
-        <NoProjectSelected onStartAddProject={handleStartAddProject} />
-      ) : (
-        <NewProject onAddProject={handleAddProject} onCancelAddProject={handleCancelAddProject} />
-      )}
+      <ProjectsSidebar
+        onStartAddProject={handleStartAddProject}
+        projects={projectsState.projects}
+      />
+      {content}
     </main>
   );
 }
