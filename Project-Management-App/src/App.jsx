@@ -5,7 +5,7 @@ import NoProjectSelected from "./components/NoProjectSelected.jsx";
 
 function App() {
   const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined, // undefined represents initial state w/ no project
+    selectedProjectId: undefined, // undefined represents initial state w/ no project (selected)
     projects: [],
   });
 
@@ -18,13 +18,27 @@ function App() {
     });
   }
 
+  function handleAddProject(userInputs) {
+    setProjectsState((prevProjectsState) => {
+      const newProject = {
+        ...userInputs,
+        id: Math.random(), // not best practice for generating ids, but this is sufficient for this project
+      };
+
+      return {
+        ...prevProjectsState,
+        projects: [...prevProjectsState.projects, newProject],
+      };
+    });
+  }
+
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar onStartAddProject={handleStartAddProject} />
       {projectsState.selectedProjectId === undefined ? (
         <NoProjectSelected onStartAddProject={handleStartAddProject} />
       ) : (
-        <NewProject />
+        <NewProject onAddProject={handleAddProject} />
       )}
     </main>
   );
