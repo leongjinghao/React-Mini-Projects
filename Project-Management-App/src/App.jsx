@@ -5,7 +5,7 @@ import NoProjectSelected from "./components/NoProjectSelected.jsx";
 
 function App() {
   const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined, // undefined represents initial state w/ no project (selected)
+    selectedProjectId: null, // null represents initial state w/o project selected
     projects: [],
   });
   let content;
@@ -14,7 +14,7 @@ function App() {
     setProjectsState((prevProjectsState) => {
       return {
         ...prevProjectsState,
-        selectedProjectId: null, // null represents adding project action
+        selectedProjectId: "adding", // represents adding project action
       };
     });
   }
@@ -23,7 +23,7 @@ function App() {
     setProjectsState((prevProjectsState) => {
       return {
         ...prevProjectsState,
-        selectedProjectId: undefined, // revert back to no project selected
+        selectedProjectId: null, // revert back to no project selected
       };
     });
   }
@@ -43,9 +43,9 @@ function App() {
     });
   }
 
-  if (projectsState.selectedProjectId === undefined) {
+  if (projectsState.selectedProjectId === null) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
-  } else if (projectsState.selectedProjectId === null) {
+  } else if (projectsState.selectedProjectId === "adding") {
     content = <NewProject onAddProject={handleAddProject} onCancelAddProject={handleCancelAddProject} />;
   } else {
     // TODO: display project data if a project is selected
