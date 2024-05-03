@@ -109,7 +109,6 @@ function App() {
       };
     });
   }
-  console.log(projectsState);
 
   if (projectsState.selectedProjectId === null) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
