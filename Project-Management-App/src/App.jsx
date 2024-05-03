@@ -39,7 +39,7 @@ function App() {
 
       return {
         ...prevProjectsState,
-        selectedProjectId: projectId,
+        selectedProjectId: `${projectId}`,
         projects: { ...prevProjectsState.projects, [projectId]: newProject },
       };
     });
