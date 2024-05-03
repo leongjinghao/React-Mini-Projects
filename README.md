@@ -80,3 +80,15 @@ Learning concepts:
 - Exposing ref to child element using **_forwardRef_**
 - Different timer implementation with **_setTimeout_** and **_setInterval_**
 - Rendering component in a remote location through **_createPortal_**, not at direct parent/child component
+
+## Project Management App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/d4b7e308-5a4c-4e2f-aed7-ae9224f82781">
+</p>
+
+Learning concepts:
+- Styling components with Tailwind CSS
+- Input validation and rendering error modal in a remote location through **_createPortal_**
+- Understanding props drilling (to avoid)
+- Optimising random access with hashmap/dict implementation
