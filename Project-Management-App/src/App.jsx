@@ -91,7 +91,25 @@ function App() {
     });
   }
 
-  function handleDeleteTask() {}
+  function handleDeleteTask(taskId) {
+    setProjectsState((prevProjectsState) => {
+      const projectId = prevProjectsState.selectedProjectId;
+      const copyTasks = { ...prevProjectsState.projects[projectId].tasks };
+      delete copyTasks[taskId];
+
+      return {
+        ...prevProjectsState,
+        projects: {
+          ...prevProjectsState.projects,
+          [projectId]: {
+            ...prevProjectsState.projects[projectId],
+            tasks: { ...copyTasks },
+          },
+        },
+      };
+    });
+  }
+  console.log(projectsState);
 
   if (projectsState.selectedProjectId === null) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;

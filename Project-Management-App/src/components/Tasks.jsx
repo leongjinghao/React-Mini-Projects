@@ -18,7 +18,7 @@ export default function Tasks({ tasks, onAddTask, onDeleteTask }) {
               <span>{task.description}</span>
               <button
                 className="text-stone-700 hover:text-red-500"
-                onClick={onDeleteTask}
+                onClick={() => onDeleteTask(id)}
               >
                 Clear
               </button>
