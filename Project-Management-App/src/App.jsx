@@ -2,11 +2,12 @@ import { useState } from "react";
 import NewProject from "./components/NewProject.jsx";
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
+import SelectedProject from "./components/SelectedProject.jsx";
 
 function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: null, // null represents initial state w/o project selected
-    projects: [],
+    projects: {},
   });
   let content;
 
@@ -33,12 +34,34 @@ function App() {
       const projectId = Math.random(); // not best practice for generating ids, but this is sufficient for this project
       const newProject = {
         ...userInputs,
-        id: projectId,
       };
 
       return {
+        ...prevProjectsState,
         selectedProjectId: projectId,
-        projects: [...prevProjectsState.projects, newProject],
+        projects: { ...prevProjectsState.projects, [projectId]: newProject },
+      };
+    });
+  }
+
+  function handleSelectProject(projectId) {
+    setProjectsState((prevProjectsState) => {
+      return {
+        ...prevProjectsState,
+        selectedProjectId: projectId,
+      };
+    });
+  }
+
+  function handleDeleteProject() {
+    setProjectsState((prevProjectsState) => {
+      const copyProjects = { ...prevProjectsState.projects };
+      delete copyProjects[prevProjectsState.selectedProjectId];
+
+      return {
+        ...prevProjectsState,
+        selectedProjectId: null,
+        projects: { ...copyProjects },
       };
     });
   }
@@ -46,16 +69,27 @@ function App() {
   if (projectsState.selectedProjectId === null) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   } else if (projectsState.selectedProjectId === "adding") {
-    content = <NewProject onAddProject={handleAddProject} onCancelAddProject={handleCancelAddProject} />;
+    content = (
+      <NewProject
+        onAddProject={handleAddProject}
+        onCancelAddProject={handleCancelAddProject}
+      />
+    );
   } else {
-    // TODO: display project data if a project is selected
+    content = (
+      <SelectedProject
+        project={projectsState.projects[projectsState.selectedProjectId]}
+        onDeleteProject={handleDeleteProject}
+      />
+    );
   }
 
   return (
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar
         onStartAddProject={handleStartAddProject}
-        projects={projectsState.projects}
+        projectsState={projectsState}
+        onSelectProject={handleSelectProject}
       />
       {content}
     </main>
