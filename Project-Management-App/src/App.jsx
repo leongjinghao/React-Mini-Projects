@@ -8,7 +8,6 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: null, // null represents initial state w/o project selected
     projects: {},
-    tasks: {},
   });
   let content;
 
@@ -35,6 +34,7 @@ function App() {
       const projectId = Math.random(); // not best practice for generating ids, but this is sufficient for this project
       const newProject = {
         ...userInputs,
+        tasks: {},
       };
 
       return {
@@ -72,15 +72,20 @@ function App() {
       const projectId = prevProjectsState.selectedProjectId;
       const taskId = Math.random();
       const newTask = {
-        id: taskId,
         description: text,
       };
 
       return {
         ...prevProjectsState,
-        tasks: {
-          ...prevProjectsState.tasks,
-          [projectId]: [...(prevProjectsState.tasks[projectId] ?? []), newTask],
+        projects: {
+          ...prevProjectsState.projects,
+          [projectId]: {
+            ...prevProjectsState.projects[projectId],
+            tasks: {
+              ...prevProjectsState.projects[projectId].tasks,
+              [taskId]: newTask,
+            },
+          },
         },
       };
     });
@@ -102,7 +107,7 @@ function App() {
       <SelectedProject
         project={projectsState.projects[projectsState.selectedProjectId]}
         onDeleteProject={handleDeleteProject}
-        tasks={projectsState.tasks[projectsState.selectedProjectId]}
+        tasks={projectsState.projects[projectsState.selectedProjectId].tasks}
         onAddTask={handleAddTask}
         onDeleteTask={handleDeleteTask}
       />
