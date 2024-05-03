@@ -8,6 +8,7 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: null, // null represents initial state w/o project selected
     projects: {},
+    tasks: {},
   });
   let content;
 
@@ -66,6 +67,27 @@ function App() {
     });
   }
 
+  function handleAddTask(text) {
+    setProjectsState((prevProjectsState) => {
+      const projectId = prevProjectsState.selectedProjectId;
+      const taskId = Math.random();
+      const newTask = {
+        id: taskId,
+        description: text,
+      };
+
+      return {
+        ...prevProjectsState,
+        tasks: {
+          ...prevProjectsState.tasks,
+          [projectId]: [...(prevProjectsState.tasks[projectId] ?? []), newTask],
+        },
+      };
+    });
+  }
+
+  function handleDeleteTask() {}
+
   if (projectsState.selectedProjectId === null) {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   } else if (projectsState.selectedProjectId === "adding") {
@@ -80,6 +102,9 @@ function App() {
       <SelectedProject
         project={projectsState.projects[projectsState.selectedProjectId]}
         onDeleteProject={handleDeleteProject}
+        tasks={projectsState.tasks[projectsState.selectedProjectId]}
+        onAddTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
       />
     );
   }
