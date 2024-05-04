@@ -1,8 +1,10 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import LabeledInput from "./LabeledInput.jsx";
 import Modal from "./Modal.jsx";
+import { ProjectsContext } from "../store/projects-context.jsx";
 
-export default function NewProject({ onAddProject, onCancelAddProject }) {
+export default function NewProject() {
+  const { onAddProject, onCancelAddProject } = useContext(ProjectsContext);
   const modal = useRef();
   const [userInputs, setUserInputs] = useState({
     title: "",

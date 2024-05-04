@@ -6,7 +6,7 @@ export default function Tasks({ tasks, onAddTask, onDeleteTask }) {
   return (
     <section>
       <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-      <NewTask onAddTask={onAddTask} onDeleteTask={onDeleteTask} />
+      <NewTask onAddTask={onAddTask} />
       {projectTasks.length === 0 ? (
         <p className="text-stone-800 my-4">
           This projct does not have any tasks yet.

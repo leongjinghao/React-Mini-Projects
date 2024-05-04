@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Modal from "./Modal.jsx";
 
-export default function NewTask({ onAddTask, onDeleteTask }) {
+export default function NewTask({ onAddTask }) {
   const [enteredTask, setEnteredTask] = useState("");
   const modal = useRef();
 

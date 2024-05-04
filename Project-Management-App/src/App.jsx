@@ -3,12 +3,24 @@ import NewProject from "./components/NewProject.jsx";
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
 import SelectedProject from "./components/SelectedProject.jsx";
+import { ProjectsContext } from "./store/projects-context.jsx";
 
 function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: null, // null represents initial state w/o project selected
     projects: {},
   });
+  const contextValue = {
+    selectedProjectId: projectsState.selectedProjectId,
+    projects: projectsState.projects,
+    onStartAddProject: handleStartAddProject,
+    onCancelAddProject: handleCancelAddProject,
+    onAddProject: handleAddProject,
+    onSelectProject: handleSelectProject,
+    onDeleteProject: handleDeleteProject,
+    onAddTask: handleAddTask,
+    onDeleteTask: handleDeleteTask,
+  };
   let content;
 
   function handleStartAddProject() {
@@ -111,35 +123,20 @@ function App() {
   }
 
   if (projectsState.selectedProjectId === null) {
-    content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
+    content = <NoProjectSelected />;
   } else if (projectsState.selectedProjectId === "adding") {
-    content = (
-      <NewProject
-        onAddProject={handleAddProject}
-        onCancelAddProject={handleCancelAddProject}
-      />
-    );
+    content = <NewProject />;
   } else {
-    content = (
-      <SelectedProject
-        project={projectsState.projects[projectsState.selectedProjectId]}
-        onDeleteProject={handleDeleteProject}
-        tasks={projectsState.projects[projectsState.selectedProjectId].tasks}
-        onAddTask={handleAddTask}
-        onDeleteTask={handleDeleteTask}
-      />
-    );
+    content = <SelectedProject />;
   }
 
   return (
-    <main className="h-screen my-8 flex gap-8">
-      <ProjectsSidebar
-        onStartAddProject={handleStartAddProject}
-        projectsState={projectsState}
-        onSelectProject={handleSelectProject}
-      />
-      {content}
-    </main>
+    <ProjectsContext.Provider value={contextValue}>
+      <main className="h-screen my-8 flex gap-8">
+        <ProjectsSidebar />
+        {content}
+      </main>
+    </ProjectsContext.Provider>
   );
 }
 
