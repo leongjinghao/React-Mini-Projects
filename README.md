@@ -90,5 +90,19 @@ Learning concepts:
 Learning concepts:
 - Styling components with Tailwind CSS
 - Input validation and rendering error modal in a remote location through **_createPortal_**
-- Understanding props drilling (to avoid)
 - Optimising random access with hashmap/dict implementation
+- Understanding props drilling
+- Avoid props drilling through the use of React's **_useContext_** API
+- Pattern: Outsourcing Context and State Into Separate Provider Component
+
+## Elegant Context App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/c6f3df62-d176-4c45-a592-d61901887293">
+</p>
+
+Learning concepts:
+- Utilising component composition to avoid props drilling
+- Avoid props drilling through the use of React's **_useContext_** API
+- Pattern: Outsourcing Context and State Into Separate Provider Component
+- Managing states with React's **_useReducer_**
