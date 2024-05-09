@@ -106,3 +106,21 @@ Learning concepts:
 - Avoid props drilling through the use of React's **_useContext_** API
 - Pattern: Outsourcing Context and State Into Separate Provider Component
 - Managing states with React's **_useReducer_**
+
+## Place Picker App
+
+<p align="center">
+ <img src="https://github.com/leongjinghao/React-Mini-Projects/assets/73938217/43d65bbc-cb01-40c0-8c3b-256c42653639">
+</p>
+
+Learning concepts:
+- Handling side effects with **_useEffect_** hook
+- Situation to use **_useEffect_**:
+  - When call-back function execution order is not deterministic (when involving async function)
+  - When operations are to be performed on the initial render only (not on subsequent render)
+  - When operations are to be performed on certain state, prop, or other variable changes, and not on every render
+- Return function in **_useEffect_** hook used to define a clean-up function, which is executed:
+  - On component unmount (removed from DOM)
+  - Before the next execution of the call-back function defined in **_useEffect_** (element in dependency array gets updated)
+- Utilising **_useCallback_** to avoid redefining call-back functions (during rerendering), useful when a call-back function is used in the dependency array of a **_useEffect_** hook
+- Optimisation: Outsourcing frequently rerendered elements to another component
